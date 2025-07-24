@@ -1,5 +1,138 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Microsoft.AspNetCore.Html;
+@model List<Doctor>
 @{
+    int pageIndex = (int)ViewData["PageIndex"]!;
+    int totalPages = (int)ViewData["TotalPages"]!;
+    string search = (string)ViewData["Search"]!;
+
+    string column = (string)ViewData["Column"];
+    string orderBy = (string)ViewData["OrderBy"];
+
+    HtmlString getArrow(string tableColumn)
+    {
+        if (tableColumn != column) return new HtmlString(""); ;
+
+        if (orderBy == "desc")
+        {
+            return new HtmlString("<i class='bi bi-arrow-down'></i>");
+        }
+
+        // return new HtmlString("&uarr;");
+        return new HtmlString("<i class='bi bi-arrow-up'></i>");
+    }
 }
+
+<script>
+    function sortTable(column){
+        let orderBy = "desc"
+
+        let currentColumn ="@column";
+        let currentOrder = "@orderBy";
+
+        if(column === currentColumn){
+            if(currentOrder == "asc") orderBy ="desc";
+            else orderBy ="asc";
+        }
+
+        window.location.href="?search=@(search)&column="+column+"&orderBy="+orderBy
+    }
+</script>
+
+<h2 class="text-center mb-5">List of Doctors</h2>
+
+<div class="row mb-5">
+    <div class="col">
+        <a class="btn btn-primary" asp-controller="Doctors" asp-action="Create">
+            <i class="fa-solid fa-plus"></i>
+           Add New Doctor
+        </a>
+    </div>
+
+    <div class="col">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" name="search" value="@search" placeholder="Search by Name or Specilization" aria-label="Search" />
+            <button class="btn btn-sm btn-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+</div>
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th style="cursor:pointer;" onclick="sortTable('Id')">ID @getArrow("Id")</th>
+            <th>Image</th>
+            <th style="cursor:pointer;" onclick="sortTable('Name')">Name @getArrow("Name")</th>
+            <th style="cursor:pointer;" onclick="sortTable('Specialization')">Specialization @getArrow("Specialization")</th>
+            <th style="cursor:pointer;" >Email</th>
+            <th style="cursor:pointer;" >Phone</th>
+            <th style="cursor:pointer;" >Address</th>
+            <th style="cursor:pointer;" onclick="sortTable('CreatedAt')">Created At @getArrow("CreatedAt")</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var doctor in Model)
+        {
+            <tr>
+                <td>@doctor.Id</td>
+                <td>
+                    <img width="100" src="/doctors/@doctor.ImageFileName" />
+                </td>
+                <td>@doctor.Name</td>
+                <td>@doctor.Specialization</td>
+                <td>@doctor.Email</td>
+                <td>@(doctor.phone)</td>
+                <td>@(doctor.Address)</td>
+                <td>@doctor.CreatedAt.ToString("MM/dd/yyyy")</td>
+                <td style="white-space:nowrap">
+                    <a class="btn btn-primary btn-sm"
+                       asp-controller="Products"
+                       asp-action="Edit"
+                       asp-route-id="@doctor.Id">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Edit
+                    </a>
+
+                    <a class="btn btn-danger btn-sm"
+                       asp-controller="Products" asp-action="Delete" asp-route-id="@doctor.Id"
+                       onclick="return confirm('Are you sure?')">
+                        <i class="fa-solid fa-trash-can"></i>
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="row">
+    <div class="col d-flex justify-content-center">
+        <nav aria-label="Page navigation example ">
+            <ul class="pagination">
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    string active = "";
+                    if (i == pageIndex)
+                    {
+                        active = "active";
+                    }
+
+                    <li class="page-item @active">
+                        <a class="page-link"
+                           asp-route-pageIndex="@i"
+                           asp-route-search="@search"
+                           asp-route-column="@column"
+                           asp-route-orderBy="@orderBy">@i</a>
+                    </li>
+                }
+
+            </ul>
+
+        </nav>
+    </div>
+</div>

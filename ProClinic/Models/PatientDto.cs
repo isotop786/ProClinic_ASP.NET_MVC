@@ -1,19 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ProClinic.Models
 {
-  
-
-    public class Patient
+    public class PatientDto
     {
-        public int Id { get; set; }
-
         [MaxLength(100)]
         public string Name { get; set; } = "";
-
-        public int Age { get; set; }
 
         [Required(ErrorMessage = "Date of Birth is required")]
         [DataType(DataType.Date)]
@@ -28,6 +20,9 @@ namespace ProClinic.Models
         public string Phone { get; set; } = "";
 
         [Required]
+        public string Symptoms { get; set; } = "";
+
+        [Required]
         public string Gender { get; set; } = "";
 
         [Required(ErrorMessage = "Address is requried")]
@@ -36,14 +31,6 @@ namespace ProClinic.Models
         [Required]
         public string paymentStatus { get; set; } = "Pending";
 
-        [Required]
-        public string Symptoms { get; set; } = "";
-
         public int DoctorId { get; set; }  // Foreign Key
-
-        [ForeignKey("DoctorId")]
-        public virtual Doctor Doctor { get; set; }
-
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }
