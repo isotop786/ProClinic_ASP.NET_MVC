@@ -13,6 +13,8 @@ namespace ProClinic.Services
         {
         }
 
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Doctor> Doctor { get; set; } 
 
     }
 }
