@@ -130,6 +130,11 @@ namespace ProClinic.Controllers
         {
             Console.WriteLine(doctorDto);
 
+            //if (doctorDto.Specialization == "")
+            //{
+            //    ModelState.AddModelError("Specialization", "Select a valid option for Specialization");
+            //}
+
             if (doctorDto.ImageFileName == null)
             {
                 ModelState.AddModelError("ImageFileName", "The image file is required");

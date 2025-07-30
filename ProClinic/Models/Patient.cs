@@ -13,14 +13,14 @@ namespace ProClinic.Models
         [MaxLength(100)]
         public string Name { get; set; } = "";
 
-        public int Age { get; set; }
+        
+        //public int Age { get; set; }
 
         [Required(ErrorMessage = "Date of Birth is required")]
         [DataType(DataType.Date)]
         [Display(Name = "Date of Birth")]
         public DateTime DateOfBirth { get; set; }
 
-        [Required(ErrorMessage = "Email is required")]
         [EmailAddress]
         public string Email { get; set; } = "";
 
@@ -37,8 +37,9 @@ namespace ProClinic.Models
         public string paymentStatus { get; set; } = "Pending";
 
         [Required]
-        public string Symptoms { get; set; } = "";
+        public string Symptoms { get; set; }
 
+        [Required(ErrorMessage ="Patient must assign to a Doctor")]
         public int DoctorId { get; set; }  // Foreign Key
 
         [ForeignKey("DoctorId")]

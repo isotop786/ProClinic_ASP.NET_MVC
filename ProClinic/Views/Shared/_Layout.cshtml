@@ -217,89 +217,92 @@
             <!-- Sidebar -->
 
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
-                            <i class="mdi mdi-grid-large menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                            <i class="menu-icon mdi mdi-wheelchair-accessibility"></i>
-                            <span class="menu-title">Patients</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" asp-controller="Patients" asp-action="Index">All Patients</a></li>
-                                <li class="nav-item"> <a class="nav-link" asp-controller="Patients" asp-action="Create">Add New Patient</a></li>
-                            </ul>
-                        </div>
-                    </li>
+    <ul class="nav" id="accordionSidebar"> <!-- 👈 Add accordion wrapper -->
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
+                <i class="mdi mdi-grid-large menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-doctor" aria-expanded="false" aria-controls="ui-basic">
-                            <i class="menu-icon mdi mdi-account"></i>
-                            <span class="menu-title">Dcotor</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-doctor">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" asp-controller="Doctors" asp-action="Index" >Doctors List</a></li>
-                                <li class="nav-item"> <a class="nav-link" asp-controller="Doctors" asp-action="Create">Add Doctor</a></li>
-                            </ul>
-                        </div>
-                    </li>
+        <!-- Patients -->
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <i class="menu-icon mdi mdi-wheelchair-accessibility"></i>
+                <span class="menu-title">Patients</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic" data-bs-parent="#accordionSidebar"> <!-- 👈 Add data-bs-parent -->
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" asp-controller="Patients" asp-action="Index">All Patients</a></li>
+                    <li class="nav-item"> <a class="nav-link" asp-controller="Patients" asp-action="Create">Add New Patient</a></li>
+                </ul>
+            </div>
+        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-appointment" aria-expanded="false" aria-controls="ui-basic">
-                            <i class="menu-icon mdi mdi-calendar-clock"></i>
-                            <span class="menu-title">Appointments</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-appointment">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-                            </ul>
-                        </div>
-                    </li>
+        <!-- Doctor -->
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-doctor" aria-expanded="false" aria-controls="ui-doctor">
+                <i class="menu-icon mdi mdi-account"></i>
+                <span class="menu-title">Doctor</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-doctor" data-bs-parent="#accordionSidebar"> <!-- 👈 Add data-bs-parent -->
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item" id="ui-doctor-index"> <a class="nav-link" asp-controller="Doctors" asp-action="Index">Doctors List</a></li>
+                    <li class="nav-item" id="ui-doctor-create"> <a class="nav-link" asp-controller="Doctors" asp-action="Create">Add Doctor</a></li>
+                </ul>
+            </div>
+        </li>
 
+        <!-- Appointments -->
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-appointment" aria-expanded="false" aria-controls="ui-appointment">
+                <i class="menu-icon mdi mdi-calendar-clock"></i>
+                <span class="menu-title">Appointments</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-appointment" data-bs-parent="#accordionSidebar"> <!-- 👈 -->
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                </ul>
+            </div>
+        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-payments" aria-expanded="false" aria-controls="ui-basic">
-                            <i class="menu-icon mdi mdi-cash-multiple"></i>
-                            <span class="menu-title">Payments</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-payments">
-                            <ul class="nav flex-column sub-menu">
-                                
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-                            </ul>
-                        </div>
-                    </li>
+        <!-- Payments -->
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-payments" aria-expanded="false" aria-controls="ui-payments">
+                <i class="menu-icon mdi mdi-cash-multiple"></i>
+                <span class="menu-title">Payments</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-payments" data-bs-parent="#accordionSidebar"> <!-- 👈 -->
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                </ul>
+            </div>
+        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-report" aria-expanded="false" aria-controls="ui-basic">
-                            <i class="menu-icon mdi mdi-clipboard-outline"></i>
-                            <span class="menu-title">Report</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-report">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-                            </ul>
-                        </div>
-                    </li>
+        <!-- Report -->
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-report" aria-expanded="false" aria-controls="ui-report">
+                <i class="menu-icon mdi mdi-clipboard-outline"></i>
+                <span class="menu-title">Report</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-report" data-bs-parent="#accordionSidebar"> <!-- 👈 -->
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</nav>
 
-
-                    
-            </nav>
 
             <!-- Main content -->
             <main role="main" class="col-md-10 ms-sm-auto col-lg-10 px-md-4 main-content py-4">
@@ -323,6 +326,9 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     <script src="~/lib/js/template.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 
     @await RenderSectionAsync("Scripts", required: false)

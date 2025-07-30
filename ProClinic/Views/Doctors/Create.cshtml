@@ -52,7 +52,15 @@
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label">Specialization</label>
                 <div class="col-sm-8">
-                    <input class="form-control" asp-for="Specialization"/>
+                    <select class="form-select" asp-for="Specialization">
+                        <option value="">Select...</option>
+                        <option value="General">General</option>
+                        <option value="Medicine">Medicine</option>
+                        <option value="Cardiology">Cardiology</option>
+                        <option value="Urologxay">Urology</option>
+                        <option value="Pediatrics">Pediatrics</option>
+                        <option value="Gynaecology">Gynaecology</option>
+                    </select>
                     <span asp-validation-for="Specialization" class="text-danger"></span>
                 </div>
             </div>
