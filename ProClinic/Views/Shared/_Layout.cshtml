@@ -58,12 +58,7 @@
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
 
                 <div>
-                    @* <a class="navbar-brand brand-logo" href="index.html"> *@
-                    @*     <img src="images/logo.svg" alt="logo" /> *@
-                    @* </a> *@
-                    @* <a class="navbar-brand brand-logo-mini" href="index.html"> *@
-                    @*     <img src="images/logo-mini.svg" alt="logo" /> *@
-                    @* </a> *@
+                 
 
                     <h2>ProClinique</h2>
                 </div>
@@ -82,62 +77,13 @@
                         var appUser = await UserManager.GetUserAsync(User);
                         <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                             <h1 class="welcome-text">Welcome , <span class="text-white fw-bold">@appUser.FirstName</span></h1>
-                            <h3 class="welcome-sub-text">Your performance summary </h3>
+                          
                         </li>
                     }
                    
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                   
-                    <li class="nav-item d-none d-lg-block">
-                        <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
-                            <input type="text" class="form-control">
-                            <span class="input-group-addon input-group-prepend border-right">
-                                <span class="icon-calendar input-group-text calendar-icon"></span>
-                                
-                            </span>
-                            
-                        </div>
-                    </li>
                     
-                    <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                            <i class="icon-mail icon-lg"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
-                            <a class="dropdown-item py-3 border-bottom">
-                                <p class="mb-0 font-weight-medium float-left">You have 4 new notifications </p>
-                                <span class="badge badge-pill badge-primary float-right">View all</span>
-                            </a>
-                            <a class="dropdown-item preview-item py-3">
-                                <div class="preview-thumbnail">
-                                    <i class="mdi mdi-alert m-auto text-primary"></i>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject fw-normal text-dark mb-1">Application Error</h6>
-                                    <p class="fw-light small-text mb-0"> Just now </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item py-3">
-                                <div class="preview-thumbnail">
-                                    <i class="mdi mdi-settings m-auto text-primary"></i>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject fw-normal text-dark mb-1">Settings</h6>
-                                    <p class="fw-light small-text mb-0"> Private message </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item py-3">
-                                <div class="preview-thumbnail">
-                                    <i class="mdi mdi-airballoon m-auto text-primary"></i>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject fw-normal text-dark mb-1">New user registration</h6>
-                                    <p class="fw-light small-text mb-0"> 2 days ago </p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="icon-bell"></i>
@@ -264,9 +210,9 @@
             </a>
             <div class="collapse" id="ui-appointment" data-bs-parent="#accordionSidebar"> <!-- 👈 -->
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                    <li class="nav-item" id="ui-doctor-index"> <a class="nav-link" asp-controller="Appointments" asp-action="Index">All Appointment</a></li>
+                    <li class="nav-item" id="ui-doctor-index"> <a class="nav-link" asp-controller="Appointments" asp-action="Create">Book Appointment</a></li>
+                    
                 </ul>
             </div>
         </li>

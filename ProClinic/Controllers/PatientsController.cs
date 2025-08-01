@@ -117,7 +117,7 @@ namespace ProClinic.Controllers
             query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
             // Paginaiton end
 
-            var products = query.ToList();
+            var paitents = query.ToList();
 
             // passing pageIndex and total number of pages using ViewData dictionary
             ViewData["PageIndex"] = pageIndex;
@@ -128,7 +128,7 @@ namespace ProClinic.Controllers
             ViewData["Column"] = column;
             ViewData["OrderBy"] = orderBy;
 
-            return View(products);
+            return View(paitents);
         }
 
         public IActionResult Create()

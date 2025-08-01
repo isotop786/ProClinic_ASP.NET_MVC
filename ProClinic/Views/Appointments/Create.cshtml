@@ -1,0 +1,124 @@
+﻿@model AppointmentDto
+@{
+}
+
+
+<div class="row" style="">
+    <div class="col-md-8 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5">Schedule an Appointment</h2>
+
+
+        <form method="post" class="my-3">
+            @Html.AntiForgeryToken()
+            <div class="mb-3 form-group">
+                <label>Doctor</label>
+                <select asp-for="DoctorId" asp-items="ViewBag.DoctorList" class="form-select"></select>
+                <span asp-validation-for="DoctorId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 form-group">
+                <label>Patient Type</label><br />
+                    <input type="radio" name="type" value="Existing" id="existingPatient" checked/> Existing
+                    <input type="radio" name="type" value="New" id="newPatient" /> New
+            </div>
+
+
+            <div class="mb-3 form-group" id="patientDropdown">
+                <label>Patient</label>
+                <select asp-for="PatientId" asp-items="ViewBag.PatientList" class="form-select"></select>
+                <span asp-validation-for="PatientId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3" id="newPatientForm">
+                <div class="form-group">
+                    <label for="patientName">Patient's Name</label>
+                    <input type="text" class="form-control" id="patientName" placeholder="Patient's Name" asp-for="PatientName">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Phone Number" asp-for="Phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="Address" asp-for="Address">
+                </div>
+            </div>
+
+
+            <div class="mb-3 form-group">
+                <label>Date & Time</label>
+                <input asp-for="AppointmentDateTime" class="form-control" type="datetime-local" />
+                <span asp-validation-for="AppointmentDateTime" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-group">
+                <label>Reason</label>
+                <textarea asp-for="Reason" class="form-control"></textarea>
+                <span asp-validation-for="Reason" class="text-danger"></span>
+            </div>
+
+            <div class="row mb-3 form-group">
+                <label class="col-sm-4 col-form-label">Status</label>
+                <div class="col-sm-8">
+                    <select class="form-select" asp-for="Status">
+                        <option value="Scheduled">Scheduled</option>
+                        <option value="Delayed">Delayed</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Book Appointment</button>
+        </form>
+    </div> 
+</div>
+
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const existingRadio = document.getElementById("existingPatient");
+            const newRadio = document.getElementById("newPatient");
+
+            const patientDropdown = document.getElementById("patientDropdown");
+            const newPatientForm = document.getElementById("newPatientForm");
+
+            const nameInput = document.getElementById("patientName");
+            const phoneInput = document.getElementById("phone");
+            const addressInput = document.getElementById("address");
+
+            function togglePatientDropdown() {
+                if (newRadio.checked) {
+                    patientDropdown.style.display = "none";
+                    newPatientForm.style.display = "block";
+
+                    // Make new patient fields required
+                    nameInput.setAttribute("required", "required");
+                    phoneInput.setAttribute("required", "required");
+                    addressInput.setAttribute("required", "required");
+                } else {
+                    patientDropdown.style.display = "block";
+                    newPatientForm.style.display = "none";
+
+                    // Remove required attribute
+                    nameInput.removeAttribute("required");
+                    phoneInput.removeAttribute("required");
+                    addressInput.removeAttribute("required");
+                }
+            }
+
+            existingRadio.addEventListener("change", togglePatientDropdown);
+            newRadio.addEventListener("change", togglePatientDropdown);
+
+            // Trigger it on page load
+            togglePatientDropdown();
+        });
+    </script>
+}
+
+
+
+
+
+
